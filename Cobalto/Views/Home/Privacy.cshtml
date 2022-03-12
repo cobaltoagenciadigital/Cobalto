@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "¿Quieres hacer crecer tu negocio?";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Escribe tu correo para registrarte en nuestro sistema</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">Crece tu negocio en linea con estos pequeños pasos.</div>
+  </div>
+  <button id="btnSubmit" type="submit" class="btn btn-primary">Muéstrame como</button>
+</form>
+
+<br/>
+
+<p id="pResult">
+    R =
+ <!--Content-->
+</p>
+
+<script>
+    $('#btnSubmit').click(function(){
+        event.preventDefault()
+        var url = "@Url.Action("CorreoInfo", "Home")";
+        var email = $("#email").val();
+        var data = { email: email };
+        $.post(url, data).done(function (data) {
+            $("#pResult").html(data);
+        })
+    })
+</script>
